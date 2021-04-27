@@ -1,0 +1,45 @@
+add_action('customize_register','my_customize_register');
+function my_customize_register( $wp_customize ) {
+  $wp_customize->add_panel('my_settings', array(
+  	'title'=>__('My Settings'),
+  	'description'=>'',
+  	'priority'=>8,
+
+  )	);
+  
+  $wp_customize->add_section('custom_colors',array(
+  	'title'=>'Colors',
+  	'panel'=>'my_settings',
+  ));
+ 
+ $wp_customize->add_setting('nav_bg_color',array(
+  	'type'=>'theme_mod',
+  	'capability'=>'edit_theme_options',
+  	'default'=>'#dcdcdc',
+  	'transport'=>'refresh',
+  	'sanitize_callback'=>'sanitize_hex_color',
+
+  ));
+  
+ $wp_customize->add_control('nav_bg_color',array(
+  	'label'=>__('Menu Background'),
+  	'type'=>'color',
+  	'section'=>'custom_colors',
+  ));
+
+ $wp_customize->add_setting('body_color',array(
+  	'type'=>'theme_mod',
+  	'capability'=>'edit_theme_options',
+  	'default'=>'#dcdcdc',
+  	'transport'=>'refresh',
+  	'sanitize_callback'=>'sanitize_hex_color',
+
+  ));
+  
+ $wp_customize->add_control('body_color',array(
+  	'label'=>__('Body Color'),
+  	'type'=>'color',
+  	'section'=>'custom_colors',
+  ));
+ 
+}
