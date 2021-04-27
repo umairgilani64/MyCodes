@@ -1,3 +1,5 @@
+
+
 add_action('customize_register','my_customize_register');
 function my_customize_register( $wp_customize ) {
   $wp_customize->add_panel('my_settings', array(
@@ -43,3 +45,8 @@ function my_customize_register( $wp_customize ) {
   ));
  
 }
+
+
+
+for including the css in header 
+background: <?php echo get_theme_mod('nav_bg_color', 'red') ?>
