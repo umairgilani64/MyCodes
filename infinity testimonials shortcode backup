@@ -1,0 +1,112 @@
+<!-- starts CPT  -->
+<?php 
+   $args = array( 
+    'post_type' => 'testimonials', 
+    'posts_per_page' => 3 
+    );
+   $the_query = new WP_Query( $args ); 
+   
+   ?>
+<div class="container">
+   <!-- <div class="row"> -->
+      <div class="owl-slider">
+         <div id="carousel" class="owl-carousel">
+         <?php if ( $the_query->have_posts() ) : ?>
+            <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+              <div class="item">
+                
+               <div class="side-tes">
+                  
+                  <div class="client-img">
+                     <span class="qoma"><img src="/infinity/wp-content/uploads/2021/04/quma.png"></span>
+                      <?php $url = wp_get_attachment_url( get_post_thumbnail_id($post->ID), 'thumbnail' ); the_post_thumbnail();?> 
+                              
+
+                  </div>
+               </div>
+             
+                 
+                  <div class="content">
+                     <?php the_content(); ?>
+                     <h2><?php the_title(); ?></h2>
+                     <h4><?php //the_field('client_designation'); ?></h4>
+                     <h6><?php the_field('client_company'); ?></h6>
+                  </div>
+                           
+               </div>
+            
+            <?php endwhile;?>
+         </div>
+      </div>
+   <!-- </div> -->
+</div>
+<?php wp_reset_postdata(); ?>
+<?php else:  ?>
+<p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
+<?php endif; ?>
+<!-- end CPT  -->
+<style>
+   .owl-slider .content {
+   width: 90%;
+   /* float: right; */
+   margin-top: 100px;
+   margin: auto;
+   padding-right: 20px;
+   padding-top: 160px;
+   }
+   .client-img {
+   width: 111%;
+   float: left;
+   position: relative;
+   top: -80px;
+   left: 0px;
+   z-index: 99;
+   }
+   .client-img img {
+   width: 100%;
+   }
+   .qoma img{margin-right:28px;}
+</style>
+<script>
+   $( document ).ready(function() {
+     
+   
+   
+   $("#carousel").owlCarousel({
+     autoplay: true,
+     lazyLoad: true,
+     loop: true,
+     margin: 20,
+      /*
+     animateOut: 'fadeOut',
+     animateIn: 'fadeIn',
+     */
+     responsiveClass: true,
+     autoHeight: true,
+     autoplayTimeout: 7000,
+     smartSpeed: 800,
+     nav: true,
+     responsive: {
+       0: {
+         items: 1
+       },
+   
+       600: {
+         items: 1
+       },
+   
+       1024: {
+         items: 1
+       },
+   
+       1366: {
+         items: 1
+       }
+     }
+   });
+   
+   });
+   
+   
+   
+</script>
