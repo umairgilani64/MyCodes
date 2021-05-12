@@ -1,0 +1,29 @@
+<div class="owl-carousel">
+    <?php 
+       $args = array( 'post_type' => 'testimonials', 'posts_per_page' => -1 );
+       $the_query = new WP_Query( $args ); 
+   
+   ?>
+      <?php if ( $the_query->have_posts() ) : ?>
+      <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+      <div class="item">
+         <div class="wp-block-media-text alignwide is-stacked-on-mobile parrot-image-cutout" style="grid-template-columns:26% auto;">
+          
+            <figure class="wp-block-media-text__media">
+               <?php $url = wp_get_attachment_url( get_post_thumbnail_id($post->ID), 'thumbnail' ); the_post_thumbnail();?>
+            </figure>
+           
+            <div class="wp-block-media-text__content">
+               <h3 class="parrot-cutout-quote"><?php the_content(); ?></h3>
+               <h4 class="parrot-cutout-quote-source"><?php echo get_the_title(); ?></h4>
+               <div class="wp-block-button parrot-button-wide"><a class="wp-block-button__link has-background" href="https://app.parrot66.com/signup" style="background-color:#ee2c4f">Setup your free business account</a></div>
+            </div>
+         </div>
+      </div>
+        <?php endwhile;?>
+   <?php wp_reset_postdata(); ?>
+   <?php else:  ?>
+   <p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
+   <?php endif; ?>
+   </div>
+ 
