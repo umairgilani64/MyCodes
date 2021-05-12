@@ -8,37 +8,43 @@
    
    ?>
 <div class="container">
-   <!-- <div class="row"> -->
+  
       <div class="owl-slider">
          <div id="carousel" class="owl-carousel">
          <?php if ( $the_query->have_posts() ) : ?>
             <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
               <div class="item">
-                
-               <div class="side-tes">
+                 <div class="row">
+                 <div class="col-md-5">
+                   <div class="side-tes">
                   
                   <div class="client-img">
                      <span class="qoma"><img src="/infinity/wp-content/uploads/2021/04/quma.png"></span>
                       <?php $url = wp_get_attachment_url( get_post_thumbnail_id($post->ID), 'thumbnail' ); the_post_thumbnail();?> 
+                       <!-- <img src="/infinity/wp-content/uploads/2021/04/wom.png" /> -->
                               
 
                   </div>
                </div>
+                 </div>
+               
              
                  
-                  <div class="content">
+                  <div class="col-md-7">
+                    <div class="content">
                      <?php the_content(); ?>
                      <h2><?php the_title(); ?></h2>
                      <h4><?php //the_field('client_designation'); ?></h4>
                      <h6><?php the_field('client_company'); ?></h6>
                   </div>
-                           
+                  </div>
+                     </div>         
                </div>
             
             <?php endwhile;?>
          </div>
       </div>
-   <!-- </div> -->
+
 </div>
 <?php wp_reset_postdata(); ?>
 <?php else:  ?>
