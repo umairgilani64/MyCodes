@@ -1,50 +1,52 @@
-
-
-add_action('customize_register','my_customize_register');
-function my_customize_register( $wp_customize ) {
-  $wp_customize->add_panel('my_settings', array(
-  	'title'=>__('My Settings'),
-  	'description'=>'',
-  	'priority'=>8,
-
-  )	);
+function themename_customize_register($wp_customize){
+     
+    $wp_customize->add_section('themename_color_scheme', array(
+        'title'    => __('Header Color/Text Options', 'my-custom'),
+        'description' => '',
+        'priority' => 120,
+    ));
   
-  $wp_customize->add_section('custom_colors',array(
-  	'title'=>'Colors',
-  	'panel'=>'my_settings',
-  ));
- 
- $wp_customize->add_setting('nav_bg_color',array(
-  	'type'=>'theme_mod',
-  	'capability'=>'edit_theme_options',
-  	'default'=>'#dcdcdc',
-  	'transport'=>'refresh',
-  	'sanitize_callback'=>'sanitize_hex_color',
-
-  ));
+    //  =============================
+    //  = Text Input                =
+    //  =============================
+    $wp_customize->add_setting('top_header_text', array(
+        'default'        => 'var',
+        'capability'     => 'edit_theme_options',
+        'type'           => 'theme_mod',
   
- $wp_customize->add_control('nav_bg_color',array(
-  	'label'=>__('Menu Background'),
-  	'type'=>'color',
-  	'section'=>'custom_colors',
-  ));
-
- $wp_customize->add_setting('body_color',array(
-  	'type'=>'theme_mod',
-  	'capability'=>'edit_theme_options',
-  	'default'=>'#dcdcdc',
-  	'transport'=>'refresh',
-  	'sanitize_callback'=>'sanitize_hex_color',
-
-  ));
+    ));
   
- $wp_customize->add_control('body_color',array(
-  	'label'=>__('Body Color'),
-  	'type'=>'color',
-  	'section'=>'custom_colors',
-  ));
- 
+    $wp_customize->add_control('themename_text_test', array(
+        'label'      => __('Top Header Text', 'my-custom'),
+        'section'    => 'themename_color_scheme',
+        'settings'   => 'top_header_text',
+    ));
+
+
+    //  =============================
+    //  = Color Picker              =
+    //  =============================
+    $wp_customize->add_setting('nav_link_color', array(
+        'default'           => '#000',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'capability'        => 'edit_theme_options',
+        'type'           => 'theme_mod',
+  
+    ));
+  
+    $wp_customize->add_control( new WP_Customize_Color_Control($wp_customize, 'link_color', array(
+        'label'    => __('Link Color', 'themename'),
+        'section'  => 'themename_color_scheme',
+        'settings' => 'nav_link_color',
+    )));
+  
+
+
+
+    
 }
+  
+add_action('customize_register', 'themename_customize_register');
 
 
 
