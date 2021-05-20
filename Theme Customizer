@@ -49,4 +49,7 @@ function my_customize_register( $wp_customize ) {
 
 
 //for including the css in header 
-background: <?php echo get_theme_mod('nav_bg_color', 'red') ?>
+ .sticky-top .myNav ul li a{
+    color: <?php echo get_theme_mod('nav_link_color') ?>;
+     
+  }
