@@ -48,5 +48,5 @@ function my_customize_register( $wp_customize ) {
 
 
 
-for including the css in header 
+//for including the css in header 
 background: <?php echo get_theme_mod('nav_bg_color', 'red') ?>
