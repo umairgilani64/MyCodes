@@ -1,4 +1,31 @@
 <?php
+
+//starts our custom post type function
+function create_posttype() {
+ 
+    register_post_type( 'testimonials',
+    // CPT Options
+        array(
+            'labels' => array(
+                'name' => __( 'Testimonials' ),
+                'singular_name' => __( 'Testimonial' )
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'rewrite' => array('slug' => 'testimonials'),
+            'show_in_rest' => true,
+            'menu_icon'           => 'dashicons-block-default',
+            'supports' => array('page-attributes', 'title', 'editor','thumbnail', 'excerpt' )
+
+ 
+        )
+    );
+}
+// Hooking up our function to theme setup
+add_action( 'init', 'create_posttype' );
+// end our custom post type function
+
+
 // submit post from prontend
 if (isset($_POST['title']) ) {
 
